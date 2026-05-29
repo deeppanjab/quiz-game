@@ -26,3 +26,15 @@ body{
     max-width: 600px;
     overflow: hidden;
 }
+
+/* Screen */
+
+.screen{
+    text-align: center;
+    padding: 2rem;
+    display: none;
+}
+
+.screen.active{
+    display: block;
+}
