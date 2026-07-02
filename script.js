@@ -61,3 +61,27 @@ const quizQuestions = [
     ],
   },
 ];
+
+// QUIZ START VARS
+
+let currentQuestionIndex = 0;
+let score = 0;
+let answerDisabled = false;
+
+totalQuestionsSpan.textContent = quizQuestions.length;
+maxScoreSpan.textContent = quizQuestions.length;
+
+startButton.addEventListener("click", startQuiz);
+restartButton.addEventListener("click", restartQuiz);
+
+function startQuiz() {
+  // RESET VARS
+  currentQuestionIndex = 0;
+  scoreSpan.textContent = 0;
+
+  startScreen.classList.remove("active");
+  quizScreen.classList.add("active");
+
+  showQuestion();
+}
+
