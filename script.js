@@ -116,3 +116,29 @@ function showQuestion() {
   });
 }
 
+
+function selectAnswer(event) {
+  if (answerDisabled) return;
+
+  answerDisabled = true;
+
+  const selectedBtn = event.target;
+  const isCorrect = selectedBtn.dataset.correct === "true";
+
+  Array.from(answersContainer.children).forEach((btn) => {
+    if (btn.dataset.correct === "true") btn.classList.add("correct");
+    else btn.classList.add("incorrect");
+  });
+
+  if (isCorrect) {
+    score++;
+    scoreSpan.textContent = score;
+  }
+
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizQuestions.length) showQuestion();
+    else showResult();
+  }, 1000);
+}
+
