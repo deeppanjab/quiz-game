@@ -126,6 +126,8 @@ function selectAnswer(event) {
   const selectedBtn = event.target;
   const isCorrect = selectedBtn.dataset.correct === "true";
 
+  //* Here Array.from() is used to convert the NodeList returned by answersContainer.children into an array, this is because the NodeList is not an array and we need to use the forEach method
+  
   Array.from(answersContainer.children).forEach((btn) => {
     if (btn.dataset.correct === "true") btn.classList.add("correct");
     else if(btn === selectedBtn) btn.classList.add("incorrect");
