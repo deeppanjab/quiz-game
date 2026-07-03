@@ -77,6 +77,7 @@ restartButton.addEventListener("click", restartQuiz);
 function startQuiz() {
   // RESET VARS
   currentQuestionIndex = 0;
+  score = 0;
   scoreSpan.textContent = 0;
 
   startScreen.classList.remove("active");
@@ -98,7 +99,7 @@ function showQuestion() {
 
   questionText.textContent = currentQuestion.question;
 
-  // todo: Explain in a second
+  // todo: Explain in a second // If we don't do this it will add questions below without replacement.
   answersContainer.innerHTML = "";
 
   currentQuestion.answers.forEach((answer) => {
@@ -127,7 +128,7 @@ function selectAnswer(event) {
 
   Array.from(answersContainer.children).forEach((btn) => {
     if (btn.dataset.correct === "true") btn.classList.add("correct");
-    else btn.classList.add("incorrect");
+    else if(btn === selectedBtn) btn.classList.add("incorrect");
   });
 
   if (isCorrect) {
@@ -155,4 +156,10 @@ function showResult(){
   else if(percentage >= 60) resultMessage.textContent= "Good effort! Keep learning!";
   else if(percentage >= 40 ) resultMessage.textContent= "Not bad! Try again to improve!";
   else resultMessage.textContent= "Keep studying! You'll get better!";
+}
+
+function restartQuiz(){
+  resultScreen.classList.remove("active");
+
+  startQuiz();
 }
